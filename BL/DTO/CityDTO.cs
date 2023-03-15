@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BL.DTO;
 
-public partial class CityBL
+public partial class CityDTO
 {
     public int Id { get; set; }
 
