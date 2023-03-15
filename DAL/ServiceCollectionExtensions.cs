@@ -16,6 +16,8 @@ public static class ServiceCollectionExtensions
         //calculate relative connection string...
         string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"H:\\Final Project\\C#\\DAL\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30";
         services.AddDbContext<DBContext>(options => options.UseSqlServer(connString));
-    }
+
+        
+}
 
 }
