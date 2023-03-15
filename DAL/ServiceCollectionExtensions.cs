@@ -14,7 +14,8 @@ public static class ServiceCollectionExtensions
         //services.AddScoped<IAuthorRepository,AuthorRepository>();
         //get the connection string from configuration...
         //calculate relative connection string...
-        string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"H:\\Final Project\\C#\\DAL\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30";
+        //string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"H:\\Final Project\\C#\\DAL\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30";
+        string connString = DBActions.GetConnectionString("Manager");
         services.AddDbContext<DBContext>(options => options.UseSqlServer(connString));
 
         

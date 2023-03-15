@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Protocols;
 
 namespace DAL;
 
@@ -17,6 +18,7 @@ internal class DBActions
         {
             return connString;
         }
+        //string conn = ConfigurationManager.ConnectionStrings[connStrNameInCnfig].ConnectionString;
         string connStr = ConfigurationManager.ConnectionStrings[connStrNameInCnfig].ConnectionString;
         connStr = ReplaceWithCurrentLocation(connStr);
         return connStr;
