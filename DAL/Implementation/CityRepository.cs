@@ -25,7 +25,7 @@ public class CityRepository : ICityRepository
         throw new NotImplementedException();
     }
 
-    public async Task<List<City>> Read()
+    public async Task<List<City>> GetAllAsync()
     {
         return await context.Cities
            .ToListAsync<City>();

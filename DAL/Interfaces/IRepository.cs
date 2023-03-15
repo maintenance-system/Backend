@@ -12,7 +12,7 @@ public interface IRepository<T>
     int Creat(T item);
     
     //Read
-    Task<List<T>> Read();
+    Task<List<T>> GetAllAsync();
 
     //Update
     bool Update(T item);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BL.DTO;
 
-public partial class Address
+public partial class AddressDTO
 {
     public int Id { get; set; }
 
@@ -15,9 +15,9 @@ public partial class Address
 
     public string? Descreption { get; set; }
 
-    public virtual ICollection<Branch> Branches { get; } = new List<Branch>();
+    public virtual ICollection<BranchDTO> Branches { get; } = new List<BranchDTO>();
 
-    public virtual CityBL City { get; set; } = null!;
+    public virtual CityDTO City { get; set; } = null!;
 
-    public virtual Neighborhood? Neighborhood { get; set; }
+    public virtual NeighborhoodDTO? Neighborhood { get; set; }
 }

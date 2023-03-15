@@ -12,7 +12,7 @@ public interface IService<T>
     public int Creat(T item);
 
     //Read
-    public List<T> Read();
+    public Task<List<T>> GetAllAsync();
 
     //Update
     public bool Update(T item);

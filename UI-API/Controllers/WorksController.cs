@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DAL.DataObjects;
-using DAL.Implementation;
+using BL.Interfaces;
+using BL.DTO;
 
 namespace UI_API.Controllers
 {
@@ -8,12 +8,16 @@ namespace UI_API.Controllers
     [Route("api/[Controller]")]
     public class WorksController : ControllerBase
     {
-        [HttpGet]
-        public List<City> GetAll()
+        ICityService cityService;
+        public WorksController(ICityService cityService)
         {
-            CityRepository cityList = new();
-            var x= cityList.Read();
-            return x;
+            this.cityService = cityService;
+        }
+
+        [HttpGet]
+        public async Task<List<CityDTO>> GetAllAsync()
+        {
+            return await cityService.GetAllAsync();
         }
     }
 }
