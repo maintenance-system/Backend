@@ -11,7 +11,7 @@ namespace UI_API.Controllers
         [HttpGet]
         public List<City> GetAll()
         {
-            CityImp cityList = new();
+            CityRepository cityList = new();
             var x= cityList.Read();
             return x;
         }

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BL.Interfaces;
-using BL.BlObjects;
+using BL.DTO;
 using DAL.DataObjects;
 
 namespace BL.Implementation;
 
-public class CityImp : ICrud<CityBL>
+public class CityImp : IService<CityBL>
 {
     public int Creat(City item)
     {

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interfaces;
+namespace BL.Interfaces;
 
-public interface ITasks<T>
+public interface IService<T>
 {
     //creat
     public int Creat(T item);
-    
+
     //Read
     public List<T> Read();
 
@@ -18,5 +18,5 @@ public interface ITasks<T>
     public bool Update(T item);
 
     //delete
-    public bool Delete(T item);                 
+    public bool Delete(T item);
 }

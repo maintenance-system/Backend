@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BL.BlObjects;
+namespace BL.DTO;
 
 public partial class Address
 {
