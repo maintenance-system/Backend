@@ -6,7 +6,7 @@ namespace UI_API.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class WorksController : ControllerBase
+    public class WorksController : WorksBaceController
     {
         ICityService cityService;
         public WorksController(ICityService cityService)

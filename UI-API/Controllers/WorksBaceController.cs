@@ -3,7 +3,7 @@
 namespace UI_API.Controllers;
 [ApiController]
 [Route("api/[Controller]")]
-public class WokersBaceController : Controller
+public class WorksBaceController : Controller
 {
    
 }
