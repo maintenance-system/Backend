@@ -9,5 +9,5 @@ public partial class CityDTO
 
     public string NameCity { get; set; } = null!;
 
-    public virtual ICollection<AddressDTO> Addresses { get; } = new List<AddressDTO>();
+    //public virtual ICollection<AddressDTO> Addresses { get; } = new List<AddressDTO>();
 }

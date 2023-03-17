@@ -15,9 +15,8 @@ public partial class AddressDTO
 
     public string? Descreption { get; set; }
 
-    public virtual ICollection<BranchDTO> Branches { get; } = new List<BranchDTO>();
+  //  public virtual ICollection<BranchDTO> Branches { get; } = new List<BranchDTO>();
 
     public virtual CityDTO City { get; set; } = null!;
 
-    public virtual NeighborhoodDTO? Neighborhood { get; set; }
 }
