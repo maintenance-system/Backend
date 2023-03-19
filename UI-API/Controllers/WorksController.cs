@@ -19,5 +19,13 @@ namespace UI_API.Controllers
         {
             return await cityService.GetAllAsync();
         }
+        [HttpGet("id")]
+       
+        public async Task<CityDTO>? Get(int id)
+        {
+
+            /*var result = CityDTO.ProductList.Where(p => p.Id == id).FirstOrDefault();
+            return result;*/
+        }
     }
 }

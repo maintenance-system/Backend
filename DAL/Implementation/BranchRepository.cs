@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DAL.DataObjects;
+using DAL.Interfaces;
+
+namespace DAL.Implementation
+{
+    internal class BranchRepository : IBranchRepository
+    {
+        public int Creat(Branch item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(Branch item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Branch>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(Branch item)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
