@@ -24,8 +24,16 @@ namespace UI_API.Controllers
         public async Task<CityDTO>? Get(int id)
         {
 
-            /*var result = CityDTO.ProductList.Where(p => p.Id == id).FirstOrDefault();
-            return result;*/
+            var result = CityDTO.List.Where(p => p.Id == id).FirstOrDefault();
+            return await result;
+        }
+        [HttpPost]
+        public int Create(Product product)
+        {
+            int maxId = Products.ProductList.Max(p => p.Id);
+            product.Id = maxId + 1;
+            Products.ProductList.Add(product);
+            return product.Id;
         }
     }
 }
