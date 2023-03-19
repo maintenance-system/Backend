@@ -23,10 +23,12 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<Handyman> Handymen { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public virtual DbSet<Worker> Workers { get; set; }
+
+   /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"H:\\Final Project\\C#\\DAL\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");
-
+*/
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Address>(entity =>
@@ -34,6 +36,7 @@ public partial class DBContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC077C0F4D24");
 
             entity.Property(e => e.Descreption).HasMaxLength(100);
+            entity.Property(e => e.NeighborhoodId).HasMaxLength(50);
             entity.Property(e => e.Street).HasMaxLength(50);
 
             entity.HasOne(d => d.City).WithMany(p => p.Addresses)
@@ -85,6 +88,26 @@ public partial class DBContext : DbContext
                 .HasForeignKey(d => d.City)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Handyman__City__4D94879B");
+        });
+
+        modelBuilder.Entity<Worker>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Worker__3214EC07306C26C7");
+
+            entity.ToTable("Worker");
+
+            entity.Property(e => e.FirstName).HasMaxLength(25);
+            entity.Property(e => e.LastName).HasMaxLength(25);
+            entity.Property(e => e.PasswordLogin)
+                .HasMaxLength(100)
+                .HasColumnName("Password_login");
+            entity.Property(e => e.Phone)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.AddressBranchNavigation).WithMany(p => p.Workers)
+                .HasForeignKey(d => d.AddressBranch)
+                .HasConstraintName("FK__Worker__AddressB__5CD6CB2B");
         });
 
         OnModelCreatingPartial(modelBuilder);

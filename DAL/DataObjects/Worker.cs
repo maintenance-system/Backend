@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BL.DTO;
+namespace DAL.DataObjects;
 
-public partial class WorkerDTO
+public partial class Worker
 {
     public int Id { get; set; }
 
@@ -17,5 +17,5 @@ public partial class WorkerDTO
 
     public string PasswordLogin { get; set; } = null!;
 
-    public virtual AddressDTO? AddressBranchNavigation { get; set; }
+    public virtual Address? AddressBranchNavigation { get; set; }
 }
