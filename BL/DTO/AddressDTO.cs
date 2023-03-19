@@ -17,6 +17,6 @@ public partial class AddressDTO
 
   //  public virtual ICollection<BranchDTO> Branches { get; } = new List<BranchDTO>();
 
-    public virtual CityDTO City { get; set; } = null!;
+   public virtual CityDTO City { get; set; } = null!;
 
 }
