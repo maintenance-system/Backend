@@ -11,11 +11,11 @@ public partial class Worker
 
     public string LastName { get; set; } = null!;
 
-    public string? Phone { get; set; }
+    public string Phone { get; set; } = null!;
 
     public int? AddressBranch { get; set; }
 
-    public string PasswordLogin { get; set; } = null!;
+    public string? PasswordLogin { get; set; }
 
     public virtual Address? AddressBranchNavigation { get; set; }
 }

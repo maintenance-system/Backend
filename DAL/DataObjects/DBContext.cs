@@ -27,7 +27,7 @@ public partial class DBContext : DbContext
 
    /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"H:\\Final Project\\C#\\DAL\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");
+        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=H:\\CCC\\DB\\DB.mdf;Integrated Security=True;Connect Timeout=30");
 */
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -92,22 +92,20 @@ public partial class DBContext : DbContext
 
         modelBuilder.Entity<Worker>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Worker__3214EC07306C26C7");
+            entity.HasKey(e => e.Id).HasName("PK__Worker__3214EC07D416F692");
 
             entity.ToTable("Worker");
 
             entity.Property(e => e.FirstName).HasMaxLength(25);
             entity.Property(e => e.LastName).HasMaxLength(25);
-            entity.Property(e => e.PasswordLogin)
-                .HasMaxLength(100)
-                .HasColumnName("Password_login");
+            entity.Property(e => e.PasswordLogin).HasMaxLength(100);
             entity.Property(e => e.Phone)
                 .HasMaxLength(10)
                 .IsUnicode(false);
 
             entity.HasOne(d => d.AddressBranchNavigation).WithMany(p => p.Workers)
                 .HasForeignKey(d => d.AddressBranch)
-                .HasConstraintName("FK__Worker__AddressB__5CD6CB2B");
+                .HasConstraintName("FK__Worker__AddressB__5FB337D6");
         });
 
         OnModelCreatingPartial(modelBuilder);

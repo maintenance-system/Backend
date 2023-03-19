@@ -11,7 +11,7 @@ public partial class WorkerDTO
 
     public string LastName { get; set; } = null!;
 
-    public string? Phone { get; set; }
+    public string Phone { get; set; }
 
     public int? AddressBranch { get; set; }
 

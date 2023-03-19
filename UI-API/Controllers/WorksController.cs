@@ -21,19 +21,22 @@ namespace UI_API.Controllers
         }
         [HttpGet("id")]
        
-        public async Task<CityDTO>? Get(int id)
+      /*  public async Task<CityDTO>? Get(int id)
         {
+           *//* var result = new CityDTO();
+          //  var result = CityDTO.List.Where(p => p.Id == id).FirstOrDefault();
+            return await result;*//*
 
-            var result = CityDTO.List.Where(p => p.Id == id).FirstOrDefault();
-            return await result;
-        }
+
+        }*/
         [HttpPost]
-        public int Create(Product product)
+        public int Create(CityDTO product)
         {
-            int maxId = Products.ProductList.Max(p => p.Id);
-            product.Id = maxId + 1;
-            Products.ProductList.Add(product);
-            return product.Id;
+            /*  int maxId = Products.ProductList.Max(p => p.Id);
+              product.Id = maxId + 1;
+              Products.ProductList.Add(product);
+              return product.Id;*/
+            return 1;
         }
     }
 }
