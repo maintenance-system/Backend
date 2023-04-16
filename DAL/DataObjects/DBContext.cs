@@ -36,7 +36,7 @@ public partial class DBContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC077C0F4D24");
 
             entity.Property(e => e.Descreption).HasMaxLength(100);
-            entity.Property(e => e.NeighborhoodId).HasMaxLength(50);
+            entity.Property(e => e.Neighborhood).HasMaxLength(50);
             entity.Property(e => e.Street).HasMaxLength(50);
 
             entity.HasOne(d => d.City).WithMany(p => p.Addresses)

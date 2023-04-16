@@ -19,6 +19,8 @@ namespace UI_API.Controllers
         {
             return await cityService.GetAllAsync();
         }
+
+
         [HttpGet("id")]
        
       /*  public async Task<CityDTO>? Get(int id)

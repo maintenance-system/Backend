@@ -13,9 +13,9 @@ public partial class WorkerDTO
 
     public string Phone { get; set; }
 
-    public int? AddressBranch { get; set; }
+    public string? AddressBranch { get; set; }
 
     public string PasswordLogin { get; set; } = null!;
 
-    public virtual AddressDTO? AddressBranchNavigation { get; set; }
+    //public virtual AddressDTO? AddressBranchNavigation { get; set; }
 }

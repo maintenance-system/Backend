@@ -7,9 +7,9 @@ public partial class AddressDTO
 {
     public int Id { get; set; }
 
-    public int CityId { get; set; }
+    public string City { get; set; }
 
-    public int? NeighborhoodId { get; set; }
+    public string? Neighborhood { get; set; }
 
     public string Street { get; set; } = null!;
 
@@ -17,6 +17,6 @@ public partial class AddressDTO
 
   //  public virtual ICollection<BranchDTO> Branches { get; } = new List<BranchDTO>();
 
-   public virtual CityDTO City { get; set; } = null!;
+   //public virtual CityDTO City { get; set; } = null!;
 
 }
