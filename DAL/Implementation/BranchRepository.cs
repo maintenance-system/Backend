@@ -10,7 +10,7 @@ namespace DAL.Implementation
 {
     internal class BranchRepository : IBranchRepository
     {
-        public int Creat(Branch item)
+        public Task<int> CreateAsync(Branch item)
         {
             throw new NotImplementedException();
         }

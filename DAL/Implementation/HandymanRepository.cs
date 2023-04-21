@@ -10,7 +10,7 @@ namespace DAL.Implementation
 {
     internal class HandymanRepository : IHandymanRepository
     {
-        public int Creat(Handyman item)
+        public Task<int> CreateAsync(Handyman item)
         {
             throw new NotImplementedException();
         }

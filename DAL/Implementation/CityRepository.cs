@@ -15,9 +15,11 @@ public class CityRepository : ICityRepository
     {
         this.context = context;
     }
-    public int Creat(City item)
+    public async Task<int> CreateAsync(City item)
     {
-        throw new NotImplementedException();
+        var result = context.Cities.Add(item);
+        await context.SaveChangesAsync();
+        return result.Entity.Id;
     }
 
     public bool Delete(City item)

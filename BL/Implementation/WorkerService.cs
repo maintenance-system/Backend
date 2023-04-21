@@ -10,7 +10,7 @@ namespace BL.Implementation
 {
     internal class WorkerService : IWorkerService
     {
-        public int Creat(WorkerDTO item)
+        public Task<int> CreateAsync(WorkerDTO item)
         {
             throw new NotImplementedException();
         }

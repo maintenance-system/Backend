@@ -7,19 +7,23 @@ using BL.DTO;
 using DAL.DataObjects;
 using DAL.Interfaces;
 using BL.Interfaces;
+using AutoMapper;
 
 namespace BL.Implementation;
 
 public class CityService : ICityService
 {
     ICityRepository cityRepository;
-    public CityService(ICityRepository cityRepository)
+    IMapper mapper;
+    public CityService(ICityRepository cityRepository, IMapper mapper)
     {
         this.cityRepository = cityRepository;
+        this.mapper = mapper;
     }
-    public int Creat(CityDTO item)
+    public async Task<int> CreateAsync(CityDTO item)
     {
-        throw new NotImplementedException();
+        City city = mapper.Map<City>(item);
+        return await cityRepository.CreateAsync(city);
     }
 
     public bool Delete(CityDTO item)

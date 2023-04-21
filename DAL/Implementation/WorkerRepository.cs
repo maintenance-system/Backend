@@ -10,7 +10,7 @@ namespace DAL.Implementation;
 
 public class WorkerRepository : IWorkerRepository
 {
-    public int Creat(Worker item)
+    public Task<int> CreateAsync(Worker item)
     {
         throw new NotImplementedException();
     }

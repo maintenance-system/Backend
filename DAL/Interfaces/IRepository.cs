@@ -9,7 +9,7 @@ namespace DAL.Interfaces;
 public interface IRepository<T>
 {
     //creat
-    int Creat(T item);
+    Task<int> CreateAsync(T item);
     
     //Read
     Task<List<T>> GetAllAsync();

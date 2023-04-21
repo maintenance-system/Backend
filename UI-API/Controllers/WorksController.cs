@@ -32,13 +32,9 @@ namespace UI_API.Controllers
 
         }*/
         [HttpPost]
-        public int Create(CityDTO product)
+        public async Task<int> Post(CityDTO city)
         {
-            /*  int maxId = Products.ProductList.Max(p => p.Id);
-              product.Id = maxId + 1;
-              Products.ProductList.Add(product);
-              return product.Id;*/
-            return 1;
+            return await cityService.CreateAsync(city);
         }
     }
 }

@@ -18,7 +18,6 @@ internal class DBActions
         {
             return connString;
         }
-        //string conn = ConfigurationManager.ConnectionStrings[connStrNameInCnfig].ConnectionString;
         string connStr = ConfigurationManager.ConnectionStrings[connStrNameInCnfig].ConnectionString;
         connStr = ReplaceWithCurrentLocation(connStr);
         return connStr;

@@ -9,7 +9,7 @@ namespace BL.Interfaces;
 public interface IService<T>
 {
     //creat
-    public int Creat(T item);
+    public Task<int> CreateAsync(T item);
 
     //Read
     public Task<List<T>> GetAllAsync();
