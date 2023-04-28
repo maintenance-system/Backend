@@ -12,4 +12,8 @@ public partial class Branch
     public int AddressId { get; set; }
 
     public virtual Address Address { get; set; } = null!;
+
+    public virtual ICollection<ConnectionHealth> ConnectionHealths { get; } = new List<ConnectionHealth>();
+
+    public virtual ICollection<ConnectionSafety> ConnectionSafeties { get; } = new List<ConnectionSafety>();
 }

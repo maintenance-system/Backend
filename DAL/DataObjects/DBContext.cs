@@ -21,14 +21,22 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<City> Cities { get; set; }
 
+    public virtual DbSet<ConnectionHealth> ConnectionHealths { get; set; }
+
+    public virtual DbSet<ConnectionSafety> ConnectionSafeties { get; set; }
+
     public virtual DbSet<Handyman> Handymen { get; set; }
+
+    public virtual DbSet<HealthIssue> HealthIssues { get; set; }
+
+    public virtual DbSet<SafetyIssue> SafetyIssues { get; set; }
 
     public virtual DbSet<Worker> Workers { get; set; }
 
    /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=H:\\CCC\\DB\\DB.mdf;Integrated Security=True;Connect Timeout=30");
-*/
+        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Rivvky & Yael\\C\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");*/
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Address>(entity =>
@@ -36,7 +44,7 @@ public partial class DBContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC077C0F4D24");
 
             entity.Property(e => e.Descreption).HasMaxLength(100);
-            entity.Property(e => e.Neighborhood).HasMaxLength(50);
+            entity.Property(e => e.NeighborhoodId).HasMaxLength(50);
             entity.Property(e => e.Street).HasMaxLength(50);
 
             entity.HasOne(d => d.City).WithMany(p => p.Addresses)
@@ -66,6 +74,62 @@ public partial class DBContext : DbContext
             entity.Property(e => e.NameCity).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<ConnectionHealth>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__connecti__3214EC07E1C62077");
+
+            entity.ToTable("connection health");
+
+            entity.Property(e => e.BranchId).HasColumnName("branchID");
+            entity.Property(e => e.Completed).HasDefaultValueSql("((0))");
+            entity.Property(e => e.Description)
+                .HasMaxLength(250)
+                .HasColumnName("description");
+            entity.Property(e => e.IssuesId).HasColumnName("issuesID");
+            entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
+            entity.Property(e => e.Selected)
+                .HasDefaultValueSql("((0))")
+                .HasColumnName("selected");
+
+            entity.HasOne(d => d.Branch).WithMany(p => p.ConnectionHealths)
+                .HasForeignKey(d => d.BranchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__connectio__branc__76969D2E");
+
+            entity.HasOne(d => d.Issues).WithMany(p => p.ConnectionHealths)
+                .HasForeignKey(d => d.IssuesId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__connectio__issue__75A278F5");
+        });
+
+        modelBuilder.Entity<ConnectionSafety>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__connecti__3214EC072FA2D280");
+
+            entity.ToTable("connection safety");
+
+            entity.Property(e => e.BranchId).HasColumnName("branchID");
+            entity.Property(e => e.Completed).HasDefaultValueSql("((0))");
+            entity.Property(e => e.Description)
+                .HasMaxLength(250)
+                .HasColumnName("description");
+            entity.Property(e => e.IssuesId).HasColumnName("issuesID");
+            entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
+            entity.Property(e => e.Selected)
+                .HasDefaultValueSql("((0))")
+                .HasColumnName("selected");
+
+            entity.HasOne(d => d.Branch).WithMany(p => p.ConnectionSafeties)
+                .HasForeignKey(d => d.BranchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__connectio__branc__7E37BEF6");
+
+            entity.HasOne(d => d.Issues).WithMany(p => p.ConnectionSafeties)
+                .HasForeignKey(d => d.IssuesId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__connectio__issue__7D439ABD");
+        });
+
         modelBuilder.Entity<Handyman>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Handyman__3214EC07120A61B9");
@@ -88,6 +152,24 @@ public partial class DBContext : DbContext
                 .HasForeignKey(d => d.City)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Handyman__City__4D94879B");
+        });
+
+        modelBuilder.Entity<HealthIssue>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__health i__3214EC0736D738DA");
+
+            entity.ToTable("health issues");
+
+            entity.Property(e => e.Type).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<SafetyIssue>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__safety i__3214EC0740A987F1");
+
+            entity.ToTable("safety issues");
+
+            entity.Property(e => e.Type).HasMaxLength(100);
         });
 
         modelBuilder.Entity<Worker>(entity =>

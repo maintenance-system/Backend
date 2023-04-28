@@ -9,7 +9,7 @@ public partial class Address
 
     public int CityId { get; set; }
 
-    public string Neighborhood { get; set; } = null!;
+    public string NeighborhoodId { get; set; } = null!;
 
     public string Street { get; set; } = null!;
 
