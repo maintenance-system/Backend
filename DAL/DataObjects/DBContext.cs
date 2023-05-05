@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DAL.DataObjects.LogIn;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.DataObjects;
@@ -15,6 +16,8 @@ public partial class DBContext : DbContext
     {
     }
 
+    public virtual DbSet<Actions> Actions { get; set; }
+
     public virtual DbSet<Address> Addresses { get; set; }
 
     public virtual DbSet<Branch> Branches { get; set; }
@@ -29,16 +32,38 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<HealthIssue> HealthIssues { get; set; }
 
+    public virtual DbSet<Role> Roles { get; set; }
+
+    public virtual DbSet<RolesAction> RolesActions { get; set; }
+
     public virtual DbSet<SafetyIssue> SafetyIssues { get; set; }
+
+    public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UserRole> UserRoles { get; set; }
 
     public virtual DbSet<Worker> Workers { get; set; }
 
-   /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Rivvky & Yael\\C\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");*/
-
+        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Rivvky & Yael\\D\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");
+*/
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Actions>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Actions__3214EC07F2B9AB7D");
+
+            entity.Property(e => e.Type)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("type");
+            entity.Property(e => e.Url)
+                .HasMaxLength(2083)
+                .IsUnicode(false)
+                .HasColumnName("url");
+        });
+
         modelBuilder.Entity<Address>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC077C0F4D24");
@@ -163,6 +188,32 @@ public partial class DBContext : DbContext
             entity.Property(e => e.Type).HasMaxLength(100);
         });
 
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Roles__3214EC07E28C7894");
+
+            entity.Property(e => e.Role1)
+                .HasMaxLength(25)
+                .HasColumnName("role");
+        });
+
+        modelBuilder.Entity<RolesAction>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__RolesAct__3214EC07EB94B78B");
+
+            entity.Property(e => e.RoleId).HasColumnName("roleId");
+
+            entity.HasOne(d => d.ActionsNavigation).WithMany(p => p.RolesActions)
+                .HasForeignKey(d => d.Actions)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__RolesActi__Actio__10566F31");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.RolesActions)
+                .HasForeignKey(d => d.RoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__RolesActi__roleI__114A936A");
+        });
+
         modelBuilder.Entity<SafetyIssue>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__safety i__3214EC0740A987F1");
@@ -170,6 +221,30 @@ public partial class DBContext : DbContext
             entity.ToTable("safety issues");
 
             entity.Property(e => e.Type).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC073D4CBF16");
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<UserRole>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__UserRole__3214EC07FED19F07");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.UserRoles)
+                .HasForeignKey(d => d.RoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__UserRoles__RoleI__123EB7A3");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserRoles)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__UserRoles__UserI__1332DBDC");
         });
 
         modelBuilder.Entity<Worker>(entity =>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BL.Profiles
 {
-    internal class CityAndCityDTO :Profile
+    internal class CityAndCityDTO : Profile
     {
         public CityAndCityDTO()
         {
