@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BL.DTO.LogIn;
 using BL.Interfaces;
 using DAL.DataObjects.LogIn;
 using DAL.Interfaces;
@@ -8,35 +9,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Implementation
+namespace BL.Implementation;
+
+internal class UserService : IUserService
 {
-    internal class UserService : IUsersService
+    IUserRepository userRepository;
+    IMapper mapper;
+    public UserService(IUserRepository userRepository, IMapper mapper)
     {
-        IUserRepository userRepository;
-        IMapper mapper;
-        public UserService(IUserRepository userRepository, IMapper mapper)
-        {
-            this.userRepository = userRepository;
-            this.mapper = mapper;
-        }
-        public Task<int> CreateAsync(User item)
-        {
-            throw new NotImplementedException();
-        }
+        this.userRepository = userRepository;
+        this.mapper = mapper;
+    }
+    public async Task<int> CreateAsync(UserDTO item)
+    {
+        User city = mapper.Map<User>(item);
+        return await userRepository.CreateAsync(city);
+    }
 
-        public bool Delete(User item)
-        {
-            throw new NotImplementedException();
-        }
+    public bool Delete(UserDTO item)
+    {
+        throw new NotImplementedException();
+    }
 
-        public Task<List<User>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+    public async Task<List<UserDTO>> GetAllAsync()
+    {
+        List<User> users = await userRepository.GetAllAsync();
+        List<UserDTO> usersDtos = mapper.Map<List<UserDTO>>(users);
 
-        public bool Update(User item)
-        {
-            throw new NotImplementedException();
-        }
+        return usersDtos;
+    }
+
+    public bool Update(UserDTO item)
+    {
+        throw new NotImplementedException();
     }
 }

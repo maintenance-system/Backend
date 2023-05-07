@@ -34,16 +34,8 @@ public class CityService : ICityService
     public async Task<List<CityDTO>> GetAllAsync()
     {
         List<City> cities = await cityRepository.GetAllAsync();
-        List<CityDTO> citiesDtos = new();
-        //todo: auto mapper
-        foreach (var item in cities)
-        {
-            citiesDtos.Add(new CityDTO()
-            {
-                Id = item.Id,
-                NameCity = item.NameCity
-            });
-        }
+        List<CityDTO> citiesDtos = mapper.Map<List<CityDTO>>(cities);
+        
         return citiesDtos;
     }
 
