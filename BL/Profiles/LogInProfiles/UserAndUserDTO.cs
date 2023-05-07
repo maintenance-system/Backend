@@ -8,14 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Profiles.LogInProfiles
+namespace BL.Profiles.LogInProfiles;
+
+internal class UserAndUserDTO :Profile
 {
-    internal class UserAndUserDTO :Profile
+    public UserAndUserDTO()
     {
-        public UserAndUserDTO()
-        {
-            CreateMap<User, UserDTO>()
-               .ReverseMap();
-        }
+        CreateMap<User, UserDTO>()
+           .ReverseMap();
     }
 }

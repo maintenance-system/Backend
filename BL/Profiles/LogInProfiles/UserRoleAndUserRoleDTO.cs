@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Profiles.LogInProfiles
+namespace BL.Profiles.LogInProfiles;
+
+internal class UserRoleAndUserRoleDTO : Profile
 {
-    internal class UserRoleAndUserRoleDTO : Profile
+    public UserRoleAndUserRoleDTO()
     {
-        public UserRoleAndUserRoleDTO()
-        {
-            CreateMap<UserRole, UserRoleDTO>()
-               .ReverseMap();
-        }
+        CreateMap<UserRole, UserRoleDTO>()
+            .ForMember(dest => dest.User,
+                        opt => opt.MapFrom(src => src.User.Name))
+            .ForMember(dest => dest.Role,
+                        opt => opt.MapFrom(src => src.Role.Role1))
+            .ReverseMap();  
+                        
     }
 }
