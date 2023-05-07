@@ -11,7 +11,7 @@ public partial class UserRoleDTO
 
     public string Role { get; set; }
 
-   /* public virtual RoleDTO Role { get; set; } = null!;
+    //public virtual RoleDTO Role { get; set; } = null!;
 
-    public virtual UserDTO User { get; set; } = null!;*/
+    //public virtual UserDTO User { get; set; } = null!;
 }

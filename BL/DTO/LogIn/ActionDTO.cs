@@ -11,5 +11,5 @@ public partial class ActionDTO
 
     public string Url { get; set; } = null!;
 
-   // public virtual ICollection<RolesActionDTO> RolesActions { get; } = new List<RolesActionDTO>();
+    //public virtual ICollection<RolesActionDTO> RolesActions { get; } = new List<RolesActionDTO>();
 }
