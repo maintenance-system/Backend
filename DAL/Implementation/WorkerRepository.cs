@@ -16,7 +16,7 @@ public class WorkerRepository : IWorkerRepository
     }
 
 
-    public bool Delete(Worker item)
+    public Task<bool> DeleteAsync(int id)
     {
         throw new NotImplementedException();
     }

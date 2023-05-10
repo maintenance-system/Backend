@@ -24,9 +24,16 @@ namespace DAL.Implementation
             return result.Entity.Id;
         }
 
-        public bool Delete(UserRole item)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = context.UserRoles.Where(p => p.Id == id).FirstOrDefault();
+            if (result != null)
+            {
+                context.UserRoles.Remove(result);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
         public async Task<List<UserRole>> GetAllAsync()

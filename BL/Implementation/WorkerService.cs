@@ -15,7 +15,7 @@ namespace BL.Implementation
             throw new NotImplementedException();
         }
 
-        public bool Delete(WorkerDTO item)
+        public async Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }

@@ -21,7 +21,7 @@ namespace UI_API.Controllers
         }
 
 
-        [HttpGet("id")]
+        //[HttpGet("id")]
        
       /*  public async Task<CityDTO>? Get(int id)
         {
@@ -36,5 +36,13 @@ namespace UI_API.Controllers
         {
             return await cityService.CreateAsync(city);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> Delete(int id)
+        {
+            return await cityService.DeleteAsync(id);
+        }
+
+
     }
 }

@@ -23,5 +23,11 @@ namespace UI_API.Controllers
         {
             return await userService.CreateAsync(user);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> Delete(int id)
+        {
+            return await userService.DeleteAsync(id);
+        }
     }
 }

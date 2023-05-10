@@ -15,7 +15,7 @@ namespace BL.Implementation
             throw new NotImplementedException();
         }
 
-        public bool Delete(HandymanDTO item)
+        public Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }

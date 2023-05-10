@@ -26,9 +26,9 @@ namespace BL.Implementation
             return await userRoleRepository.CreateAsync(userRole);
         }
 
-        public bool Delete(UserRoleDTO item)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            return await userRoleRepository.DeleteAsync(id);
         }
 
         public async Task<List<UserRoleDTO>> GetAllAsync()

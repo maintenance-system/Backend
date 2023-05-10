@@ -1,6 +1,7 @@
 ﻿using DAL.DataObjects;
 using DAL.DataObjects.LogIn;
 using DAL.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,17 @@ namespace DAL.Implementation
             return result.Entity.Id;
         }
 
-        public bool Delete(User item)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+
+            var result = context.Users.Where(p => p.Id == id).FirstOrDefault();
+            if (result != null)
+            {
+                context.Users.Remove(result);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
         public async Task<List<User>> GetAllAsync()

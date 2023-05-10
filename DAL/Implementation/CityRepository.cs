@@ -22,9 +22,16 @@ public class CityRepository : ICityRepository
         return result.Entity.Id;
     }
 
-    public bool Delete(City item)
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var result = context.Cities.Where(p => p.Id == id).FirstOrDefault();
+        if (result != null)
+        {
+            context.Cities.Remove(result);
+            await context.SaveChangesAsync();
+            return true;
+        }
+        return false;
     }
 
     public async Task<List<City>> GetAllAsync()

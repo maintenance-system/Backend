@@ -26,9 +26,9 @@ public class CityService : ICityService
         return await cityRepository.CreateAsync(city);
     }
 
-    public bool Delete(CityDTO item)
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        return await cityRepository.DeleteAsync(id);
     }
 
     public async Task<List<CityDTO>> GetAllAsync()

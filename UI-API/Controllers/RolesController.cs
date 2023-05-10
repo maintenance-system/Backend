@@ -18,10 +18,17 @@ namespace UI_API.Controllers
         {
             return await roleService.GetAllAsync();
         }
+
         [HttpPost]
         public async Task<int> Post(RoleDTO role)
         {
             return await roleService.CreateAsync(role);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> Delete(int id)
+        {
+            return await roleService.DeleteAsync(id);
         }
     }
 }

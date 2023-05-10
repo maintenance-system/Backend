@@ -14,6 +14,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICityRepository, CityRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IActionsRepository, ActionsRepository>();
         services.AddScoped<IUserRoleRepository, UserRoleRepository>();
         string connString = DBActions.GetConnectionString("Manager");
         services.AddDbContext<DBContext>(options => options.UseSqlServer(connString));

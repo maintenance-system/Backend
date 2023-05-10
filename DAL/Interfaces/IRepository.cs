@@ -18,5 +18,5 @@ public interface IRepository<T>
     bool Update(T item);
 
     //delete
-    bool Delete(T item);                 
+    Task<bool> DeleteAsync(int id);                 
 }

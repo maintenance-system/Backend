@@ -9,14 +9,14 @@ namespace BL.Interfaces;
 public interface IService<T>
 {
     //creat
-    public Task<int> CreateAsync(T item);
+    Task<int> CreateAsync(T item);
 
     //Read
-    public Task<List<T>> GetAllAsync();
+    Task<List<T>> GetAllAsync();
 
     //Update
-    public bool Update(T item);
+    bool Update(T item);
 
     //delete
-    public bool Delete(T item);
+    Task<bool> DeleteAsync(int id);
 }

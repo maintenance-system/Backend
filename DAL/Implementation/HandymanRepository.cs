@@ -15,7 +15,7 @@ namespace DAL.Implementation
             throw new NotImplementedException();
         }
 
-        public bool Delete(Handyman item)
+        public Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
