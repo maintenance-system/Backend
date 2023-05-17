@@ -38,7 +38,10 @@ namespace DAL.Implementation
 
         public async Task<List<UserRole>> GetAllAsync()
         {
-            return await context.UserRoles.ToListAsync<UserRole>();
+            return await context.UserRoles
+                .Include(u => u.User)
+                .Include(r => r.Role)
+                .ToListAsync<UserRole>();
         }
 
         public bool Update(UserRole item)
