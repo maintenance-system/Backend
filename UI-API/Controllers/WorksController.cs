@@ -22,12 +22,12 @@ namespace UI_API.Controllers
 
 
         //[HttpGet("id")]
-       
-      /*  public async Task<CityDTO>? Get(int id)
+
+       /* public async Task<CityDTO>? Get(int id)
         {
-           *//* var result = new CityDTO();
-          //  var result = CityDTO.List.Where(p => p.Id == id).FirstOrDefault();
-            return await result;*//*
+            var result = new CityDTO();
+              var result = CityDTO.List.Where(p => p.Id == id).FirstOrDefault();
+            return await result;
 
 
         }*/
