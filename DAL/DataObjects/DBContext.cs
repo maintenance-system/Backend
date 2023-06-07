@@ -28,7 +28,7 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<ConnectionSafety> ConnectionSafeties { get; set; }
 
-    public virtual DbSet<File> Files { get; set; }
+    public virtual DbSet<Files> Files { get; set; }
 
     public virtual DbSet<Handyman> Handymen { get; set; }
 
@@ -170,7 +170,7 @@ public partial class DBContext : DbContext
                 .HasConstraintName("FK__connectio__issue__7D439ABD");
         });
 
-        modelBuilder.Entity<File>(entity =>
+        modelBuilder.Entity<Files>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Files__3214EC071E4ACC79");
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BL.Utils.Status;
 
 namespace BL.DTO
 {
@@ -16,6 +17,6 @@ namespace BL.DTO
 
         public string PathFile { get; set; } = null!;
 
-        public string Status { get; set; } = null!;
+        public FileStatus Status { get; set; } 
     }
 }
