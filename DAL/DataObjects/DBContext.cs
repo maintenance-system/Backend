@@ -28,6 +28,8 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<ConnectionSafety> ConnectionSafeties { get; set; }
 
+    public virtual DbSet<File> Files { get; set; }
+
     public virtual DbSet<Handyman> Handymen { get; set; }
 
     public virtual DbSet<HealthIssue> HealthIssues { get; set; }
@@ -46,7 +48,7 @@ public partial class DBContext : DbContext
 
     /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Rivvky & Yael\\D\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");
+        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\גרינברג יעל\\Desktop\\aa\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");
 */
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,10 +59,12 @@ public partial class DBContext : DbContext
             entity.Property(e => e.Type)
                 .HasMaxLength(6)
                 .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("type");
             entity.Property(e => e.Url)
                 .HasMaxLength(2083)
                 .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("url");
         });
 
@@ -68,9 +72,15 @@ public partial class DBContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC077C0F4D24");
 
-            entity.Property(e => e.Descreption).HasMaxLength(100);
-            entity.Property(e => e.NeighborhoodId).HasMaxLength(50);
-            entity.Property(e => e.Street).HasMaxLength(50);
+            entity.Property(e => e.Descreption)
+                .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.NeighborhoodId)
+                .HasMaxLength(50)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.Street)
+                .HasMaxLength(50)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
 
             entity.HasOne(d => d.City).WithMany(p => p.Addresses)
                 .HasForeignKey(d => d.CityId)
@@ -84,7 +94,8 @@ public partial class DBContext : DbContext
 
             entity.Property(e => e.Symbol)
                 .HasMaxLength(6)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
 
             entity.HasOne(d => d.Address).WithMany(p => p.Branches)
                 .HasForeignKey(d => d.AddressId)
@@ -96,7 +107,9 @@ public partial class DBContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Cities__3214EC07E7EF94AE");
 
-            entity.Property(e => e.NameCity).HasMaxLength(50);
+            entity.Property(e => e.NameCity)
+                .HasMaxLength(50)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
         });
 
         modelBuilder.Entity<ConnectionHealth>(entity =>
@@ -109,6 +122,7 @@ public partial class DBContext : DbContext
             entity.Property(e => e.Completed).HasDefaultValueSql("((0))");
             entity.Property(e => e.Description)
                 .HasMaxLength(250)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("description");
             entity.Property(e => e.IssuesId).HasColumnName("issuesID");
             entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
@@ -137,6 +151,7 @@ public partial class DBContext : DbContext
             entity.Property(e => e.Completed).HasDefaultValueSql("((0))");
             entity.Property(e => e.Description)
                 .HasMaxLength(250)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("description");
             entity.Property(e => e.IssuesId).HasColumnName("issuesID");
             entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
@@ -155,6 +170,25 @@ public partial class DBContext : DbContext
                 .HasConstraintName("FK__connectio__issue__7D439ABD");
         });
 
+        modelBuilder.Entity<File>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Files__3214EC071E4ACC79");
+
+            entity.Property(e => e.NameFile)
+                .HasMaxLength(20)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
+                .HasColumnName("nameFile");
+            entity.Property(e => e.PathFile)
+                .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.Status)
+                .HasMaxLength(25)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.UrlFile)
+                .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+        });
+
         modelBuilder.Entity<Handyman>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Handyman__3214EC07120A61B9");
@@ -163,15 +197,22 @@ public partial class DBContext : DbContext
 
             entity.Property(e => e.EmailAddress)
                 .HasMaxLength(225)
-                .IsUnicode(false);
-            entity.Property(e => e.FirstName).HasMaxLength(20);
-            entity.Property(e => e.LastName).HasMaxLength(20);
+                .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(20)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.LastName)
+                .HasMaxLength(20)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
             entity.Property(e => e.PasswordLogin)
                 .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("Password_login");
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(10)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
 
             entity.HasOne(d => d.CityNavigation).WithMany(p => p.Handymen)
                 .HasForeignKey(d => d.City)
@@ -185,7 +226,9 @@ public partial class DBContext : DbContext
 
             entity.ToTable("health issues");
 
-            entity.Property(e => e.Type).HasMaxLength(100);
+            entity.Property(e => e.Type)
+                .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
         });
 
         modelBuilder.Entity<Role>(entity =>
@@ -194,6 +237,7 @@ public partial class DBContext : DbContext
 
             entity.Property(e => e.Role1)
                 .HasMaxLength(25)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("role");
         });
 
@@ -220,7 +264,9 @@ public partial class DBContext : DbContext
 
             entity.ToTable("safety issues");
 
-            entity.Property(e => e.Type).HasMaxLength(100);
+            entity.Property(e => e.Type)
+                .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -229,6 +275,7 @@ public partial class DBContext : DbContext
 
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("name");
         });
 
@@ -253,12 +300,19 @@ public partial class DBContext : DbContext
 
             entity.ToTable("Worker");
 
-            entity.Property(e => e.FirstName).HasMaxLength(25);
-            entity.Property(e => e.LastName).HasMaxLength(25);
-            entity.Property(e => e.PasswordLogin).HasMaxLength(100);
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(25)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.LastName)
+                .HasMaxLength(25)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.PasswordLogin)
+                .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
             entity.Property(e => e.Phone)
                 .HasMaxLength(10)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
 
             entity.HasOne(d => d.AddressBranchNavigation).WithMany(p => p.Workers)
                 .HasForeignKey(d => d.AddressBranch)

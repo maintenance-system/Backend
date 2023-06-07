@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementation
 {
-    internal class ActionsRepository : IActionsRepository
+    internal partial class ActionsRepository : IActionsRepository
     {
         DBContext context;
         public ActionsRepository(DBContext context)
