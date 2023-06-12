@@ -31,6 +31,11 @@ internal class UserService : IUserService
         return await userRepository.DeleteAsync(id);
     }
 
+    public string EqualsByPassword(string password)
+    {
+        return userRepository.EqualsByPassword(password);
+    }
+
     public async Task<List<UserDTO>> GetAllAsync()
     {
         List<User> users = await userRepository.GetAllAsync();

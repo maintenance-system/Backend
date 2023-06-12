@@ -20,16 +20,33 @@ public class UaerRolesController : BaseController
         return await userRoleService.GetAllAsync();
     }
 
-    [HttpPost]
-    public async Task<int> Post(UserRoleDTO role)
+    [HttpGet("{userName}")]
+    public async Task<ActionResult<RoleDTO>> GetRole(string userName)
     {
-        return await userRoleService.CreateAsync(role);
+
+        List<RoleDTO>  roles = await GetRoleByName(userName);
+        return Ok(roles);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<bool> Delete(int id)
+    [HttpPost]
+    public async Task<int> Post(UserRoleDTO role) =>
+        await userRoleService.CreateAsync(role);
+
+/*    [HttpPost("{userName}/{role}")]
+    public async Task<int> Post(string userName, string role)
     {
-        return await userRoleService.DeleteAsync(id);
+        string password = Request.Headers["Authorization"];
+        var roleUser = new UserRoleDTO() { Role= role, User= userName };
+        return await userRoleService.CreateAsync(roleUser, password);
+    }*/
+
+    [HttpDelete("{id}")]
+    public async Task<bool> Delete(int id) =>
+        await userRoleService.DeleteAsync(id);
+    
+    private async Task<List<RoleDTO>> GetRoleByName(string name)
+    {
+        return await userRoleService.GetRoleByName(name);
     }
 }
 

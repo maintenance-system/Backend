@@ -9,4 +9,5 @@ namespace BL.Interfaces.LogIn;
 
 public interface IUserRoleService : IService<UserRoleDTO>
 {
+    Task<List<RoleDTO>> GetRoleByName(string name);
 }

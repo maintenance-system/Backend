@@ -39,6 +39,16 @@ internal class UserRepository : IUserRepository
         return false;
     }
 
+    public string? EqualsByPassword(string password)
+    {
+        var result = context.Users.Where(p => p.Password == password).FirstOrDefault();
+        if(result != null)
+        {
+            return result.Name;
+        }
+        return null;
+    }
+
     public async Task<List<User>> GetAllAsync()
     {
         return await context.Users.ToListAsync<User>();

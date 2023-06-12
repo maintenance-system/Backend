@@ -18,7 +18,10 @@ internal class UserRoleAndUserRoleDTO : Profile
                         opt => opt.MapFrom(src => src.User.Name))
             .ForMember(dest => dest.Role,
                         opt => opt.MapFrom(src => src.Role.Role1))
-            .ReverseMap();  
-                        
+            .ReverseMap();
+      /*      .ForMember(dest => dest.User.Name, opt => opt.MapFrom(src => src.User))
+            .ForMember(dest => dest.Role.Role1, opt => opt.MapFrom(src => src.Role));*/
+
+
     }
 }

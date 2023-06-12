@@ -20,7 +20,7 @@ internal class UserRoleService : IUserRoleService
         this.userRoleRepository = userRoleRepository;
         this.mapper = mapper;
     }
-    public async Task<int> CreateAsync(UserRoleDTO item)
+    public async Task<int> CreateAsync(UserRoleDTO item/*, string password*/)
     {
         UserRole userRole = mapper.Map<UserRole>(item);
         return await userRoleRepository.CreateAsync(userRole);
@@ -37,6 +37,14 @@ internal class UserRoleService : IUserRoleService
         List<UserRoleDTO> userRoleDtos = mapper.Map<List<UserRoleDTO>>(userRole);
 
         return userRoleDtos;
+    }
+
+    public async Task<List<RoleDTO>> GetRoleByName(string name)
+    {
+        List<Role> role = await userRoleRepository.GetRoleByName(name);
+        List<RoleDTO> roleDtos = mapper.Map<List<RoleDTO>>(role);
+
+        return roleDtos;
     }
 
     public bool Update(UserRoleDTO item)

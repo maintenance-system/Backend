@@ -9,7 +9,7 @@ namespace BL.Interfaces;
 public interface IService<T>
 {
     //creat
-    Task<int> CreateAsync(T item);
+    Task<int> CreateAsync(T item/*, string password*/);
 
     //Read
     Task<List<T>> GetAllAsync();

@@ -45,7 +45,28 @@ internal class UserRoleRepository : IUserRoleRepository
             .ToListAsync<UserRole>();
     }
 
-    public bool Update(UserRole item)
+    public async Task<List<Role>> GetRoleByName(string name)
+    {
+        User user = await context.Users.FirstOrDefaultAsync(u => u.Name == name);
+
+        if (user == null)
+        {
+            return null;
+        }
+
+        List<int> roleIds = await context.UserRoles
+            .Where(ur => ur.UserId == user.Id)
+            .Select(ur => ur.RoleId)
+            .ToListAsync();
+
+        List<Role> roles = await context.Roles
+            .Where(r => roleIds.Contains(r.Id))
+            .ToListAsync();
+
+        return roles;
+    }
+
+        public bool Update(UserRole item)
     {
         throw new NotImplementedException();
     }

@@ -14,13 +14,25 @@ public class UserController : BaseController
         this.userService = cityService;
     }
 
+    [HttpGet("{userName}")]
+    public IActionResult GetUser(string userName)
+    {
+        string password = Request.Headers["Authorization"];
+
+
+        bool isAuthenticated = CheckCredentials(userName, password);
+        return Ok(isAuthenticated);
+    }
+    private bool CheckCredentials(string userName, string password)
+    {
+        return EqualsByPassword(password) == userName;
+    }
+
     [HttpGet]
     public async Task<List<UserDTO>> GetAllAsync()
     {
         return await userService.GetAllAsync();
     }
-
-    [HttpGet()]
 
     [HttpPost]
     public async Task<int> Post(UserDTO user)
@@ -32,5 +44,10 @@ public class UserController : BaseController
     public async Task<bool> Delete(int id)
     {
         return await userService.DeleteAsync(id);
+    }
+
+    private string EqualsByPassword(string password)
+    {
+        return userService.EqualsByPassword(password);
     }
 }

@@ -53,7 +53,7 @@ public class FileController : ControllerBase
 
     public FileController(DBContext Context)
     {
-        Context = Context;
+        this.Context = Context;
     }
 
     [HttpPost("upload")]

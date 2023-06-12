@@ -9,4 +9,5 @@ namespace DAL.Interfaces.Login;
 
 public interface IUserRepository : IRepository<User>
 {
+    string EqualsByPassword(string password);
 }

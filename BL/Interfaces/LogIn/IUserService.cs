@@ -9,4 +9,5 @@ namespace BL.Interfaces.LogIn;
 
 public interface IUserService : IService<UserDTO>
 {
+    string EqualsByPassword(string password);
 }

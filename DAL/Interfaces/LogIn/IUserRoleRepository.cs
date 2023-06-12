@@ -9,5 +9,5 @@ namespace DAL.Interfaces.Login;
 
 public interface IUserRoleRepository : IRepository<UserRole> 
 { 
-
+    Task<List<Role>> GetRoleByName(string name);
 }
