@@ -9,5 +9,5 @@ public partial class HealthIssue
 
     public string Type { get; set; } = null!;
 
-    public virtual ICollection<ConnectionHealth> ConnectionHealths { get; } = new List<ConnectionHealth>();
+    public virtual ICollection<ConnectionHealth> ConnectionHealths { get; set; } = new List<ConnectionHealth>();
 }

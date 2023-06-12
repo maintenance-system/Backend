@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Interfaces
+namespace BL.Interfaces.LogIn;
+
+public interface IUserService : IService<UserDTO>
 {
-    public interface IUserService : IService<UserDTO>
-    {
-    }
 }

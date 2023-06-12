@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interfaces
+namespace DAL.Interfaces.Login;
+
+public interface IActionsRepository : IRepository<Actions>
 {
-    public interface IRoleRepository : IRepository<Role>
-    {
-    }
 }

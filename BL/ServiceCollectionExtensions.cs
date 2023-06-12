@@ -1,5 +1,7 @@
 ﻿using BL.Implementation;
+using BL.Implementation.LogIn;
 using BL.Interfaces;
+using BL.Interfaces.LogIn;
 using BL.Profiles;
 using BL.Profiles.LogInProfiles;
 using BL.Utils;
@@ -17,6 +19,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IUserRoleService, UserRoleService>();
         services.AddScoped<IActionsService, ActionsService>();
+        services.AddScoped<IRoleActionsService, RoleActionsService>();
         services.AddAutoMapper(typeof(CityAndCityDTO));
         services.AddAutoMapper(typeof(UserAndUserDTO));
         services.AddAutoMapper(typeof(RolesAndRolesDTO));

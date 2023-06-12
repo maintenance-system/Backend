@@ -46,9 +46,9 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<Worker> Workers { get; set; }
 
-    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+   /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\גרינברג יעל\\Desktop\\aa\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");
+        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\גרינברג יעל\\Desktop\\‏‏תיקיה חדשה\\DB\\DB.mdf\";Integrated Security=True;Connect Timeout=30");
 */
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -271,12 +271,16 @@ public partial class DBContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC073D4CBF16");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC0756E0151C");
 
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("name");
+            entity.Property(e => e.Password)
+                .HasMaxLength(100)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
+                .HasColumnName("password");
         });
 
         modelBuilder.Entity<UserRole>(entity =>
@@ -287,11 +291,6 @@ public partial class DBContext : DbContext
                 .HasForeignKey(d => d.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__UserRoles__RoleI__123EB7A3");
-
-            entity.HasOne(d => d.User).WithMany(p => p.UserRoles)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__UserRoles__UserI__1332DBDC");
         });
 
         modelBuilder.Entity<Worker>(entity =>

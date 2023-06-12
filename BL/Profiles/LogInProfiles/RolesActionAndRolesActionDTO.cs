@@ -14,6 +14,10 @@ namespace BL.Profiles.LogInProfiles
         public RolesActionAndRolesActionDTO()
         {
             CreateMap<RolesAction, RolesActionDTO>()
+                .ForMember(dest => dest.Actions,
+                        opt => opt.MapFrom(src => src.ActionsNavigation.Url))
+                .ForMember(dest => dest.Role,
+                        opt => opt.MapFrom(src => src.Role.Role1))
                 .ReverseMap();
         }
     }

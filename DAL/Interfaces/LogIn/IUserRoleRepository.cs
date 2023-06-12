@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interfaces
-{
-    public interface IUserRepository : IRepository<User>
-    {
-    }
+namespace DAL.Interfaces.Login;
+
+public interface IUserRoleRepository : IRepository<UserRole> 
+{ 
+
 }

@@ -1,7 +1,9 @@
 ﻿using System.Configuration;
 using DAL.DataObjects;
 using DAL.Implementation;
+using DAL.Implementation.LogIn;
 using DAL.Interfaces;
+using DAL.Interfaces.Login;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +18,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<IActionsRepository, ActionsRepository>();
         services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+        services.AddScoped<IRoleActionRepository, RoleActionRepository>();
         string connString = DBActions.GetConnectionString("Manager");
         services.AddDbContext<DBContext>(options => options.UseSqlServer(connString));
        

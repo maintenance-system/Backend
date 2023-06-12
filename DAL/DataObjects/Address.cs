@@ -15,9 +15,9 @@ public partial class Address
 
     public string? Descreption { get; set; }
 
-    public virtual ICollection<Branch> Branches { get; } = new List<Branch>();
+    public virtual ICollection<Branch> Branches { get; set; } = new List<Branch>();
 
     public virtual City City { get; set; } = null!;
 
-    public virtual ICollection<Worker> Workers { get; } = new List<Worker>();
+    public virtual ICollection<Worker> Workers { get; set; } = new List<Worker>();
 }

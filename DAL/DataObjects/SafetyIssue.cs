@@ -9,5 +9,5 @@ public partial class SafetyIssue
 
     public string Type { get; set; } = null!;
 
-    public virtual ICollection<ConnectionSafety> ConnectionSafeties { get; } = new List<ConnectionSafety>();
+    public virtual ICollection<ConnectionSafety> ConnectionSafeties { get; set; } = new List<ConnectionSafety>();
 }

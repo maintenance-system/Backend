@@ -48,12 +48,12 @@ using static BL.Utils.Status;
 [Route("api/[controller]")]
 public class FileController : ControllerBase
 {
-   private readonly DBContext _dbContext;
+   private readonly DBContext Context;
     Status Status;
 
-    public FileController(DBContext dbContext)
+    public FileController(DBContext Context)
     {
-        _dbContext = dbContext;
+        Context = Context;
     }
 
     [HttpPost("upload")]
@@ -85,8 +85,8 @@ public class FileController : ControllerBase
                 Status = "Pending"
             };
 
-            _dbContext.Files.Add(fileEntity);
-            await _dbContext.SaveChangesAsync();
+            Context.Files.Add(fileEntity);
+            await Context.SaveChangesAsync();
 
             return Ok(fileEntity.UrlFile);
         }
@@ -111,7 +111,7 @@ public class FileController : ControllerBase
     [HttpGet("UrlsByStatus")]
     public IActionResult GetUrlsByStatus(string status)
     {
-        var Urls = _dbContext.Files
+        var Urls = Context.Files
             .Where(file => file.Status == status)
             .Select(file => file.UrlFile)
             .ToList();

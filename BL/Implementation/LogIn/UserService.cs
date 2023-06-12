@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using BL.DTO.LogIn;
-using BL.Interfaces;
+using BL.Interfaces.LogIn;
 using DAL.DataObjects.LogIn;
-using DAL.Interfaces;
+using DAL.Interfaces.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Implementation;
+namespace BL.Implementation.LogIn;
 
 internal class UserService : IUserService
 {
