@@ -19,6 +19,9 @@ public class UserController : BaseController
     {
         return await userService.GetAllAsync();
     }
+
+    [HttpGet()]
+
     [HttpPost]
     public async Task<int> Post(UserDTO user)
     {
