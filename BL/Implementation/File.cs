@@ -1,27 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.IO;
+﻿using DAL.DataObjects;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using DAL.DataObjects;
-using BL.Utils;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("api/[controller]")]
-public class FileController : ControllerBase
+namespace BL.Implementation;
+
+internal class File
 {
-    //private readonly DBContext Context;
-    //Status Status;
-
-
-    public FileController(/*DBContext Context*/)
-    {
-        //this.Context = Context;
-    }
-
-    [HttpPost("upload")]
-    public async Task<IActionResult> UploadFile(IFormFile file)
+    public async Task<IActionResult> readFile(IFormFile file)
     {
         if (file != null && file.Length > 0)
         {
@@ -48,31 +38,6 @@ public class FileController : ControllerBase
                 UrlFile = filePath,
                 Status = "Pending"
             };
-
-            //Context.Files.Add(fileEntity);
-            //await Context.SaveChangesAsync();
-
-            return Ok(fileEntity.UrlFile);
         }
-        else
-        {
-            return BadRequest("No file uploaded");
-
-        }
-
     }
-
-    [HttpGet("UrlsByStatus")]
-    public IActionResult GetUrlsByStatus(string status)
-    {
-        var Urls = 0;//= /*Context.Files*/
-            /*.Where(file => file.Status == status)
-            .Select(file => file.UrlFile)
-            .ToList();*/
-       
-        return Ok(Urls);
-    }
-  
 }
-
-
