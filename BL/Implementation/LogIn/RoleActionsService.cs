@@ -18,11 +18,13 @@ internal class RoleActionsService : IRoleActionsService
 {
     IRoleActionRepository roleActionRepository;
     IMapper mapper;
+
     public RoleActionsService(IRoleActionRepository roleActionRepository, IMapper mapper)
     {
         this.roleActionRepository = roleActionRepository;
         this.mapper = mapper;
     }
+
     public async Task<int> CreateAsync(RolesActionDTO item)
     {
         RolesAction action = mapper.Map<RolesAction>(item);

@@ -40,20 +40,22 @@ using System.IO;
 using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using DAL.DataObjects;
 using BL.Utils;
 using static BL.Utils.Status;
+using BL.Interfaces;
+using BL.DTO;
 
 [ApiController]
 [Route("api/[controller]")]
 public class FileController : ControllerBase
 {
-   private readonly DBContext Context;
+    //private readonly DBContext Context;
+    IFilesService filesService;
     Status Status;
 
-    public FileController(DBContext Context)
+    public FileController(IFilesService filesService)
     {
-        this.Context = Context;
+        this.filesService = filesService;
     }
 
     [HttpPost("upload")]
@@ -76,17 +78,16 @@ public class FileController : ControllerBase
 
 
             // Store the file URL in the database
-            var fileEntity = new Files()
+            var fileEntity = new FilesDTO()
             {
                 NameFile = fileName,
                 PathFile = filePath,
                 //UrlFile = GetFileUrl(filePath),
                 UrlFile = filePath,
-                Status = "Pending"
+                Status = Status.FileStatus.Pending
             };
 
-            Context.Files.Add(fileEntity);
-            await Context.SaveChangesAsync();
+            int idOfFile = await filesService.CreateAsync(fileEntity);
 
             return Ok(fileEntity.UrlFile);
         }
@@ -109,14 +110,13 @@ public class FileController : ControllerBase
         }*/
 
     [HttpGet("UrlsByStatus")]
-    public IActionResult GetUrlsByStatus(string status)
+    public async Task<IActionResult> GetUrlsByStatus(string status)
     {
-        var Urls = Context.Files
-            .Where(file => file.Status == status)
-            .Select(file => file.UrlFile)
-            .ToList();
-       
-        return Ok(Urls);
+        FileStatus fileStatus;
+        if (Enum.TryParse<Status.FileStatus>(status, true, out fileStatus))
+            return Ok(await filesService.GetByStatusAsync(fileStatus));
+
+        return BadRequest("status is worng");
     }
   
 }
