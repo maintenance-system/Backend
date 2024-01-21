@@ -20,11 +20,14 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserRoleService, UserRoleService>();
         services.AddScoped<IActionsService, ActionsService>();
         services.AddScoped<IRoleActionsService, RoleActionsService>();
+        services.AddScoped<IFilesService, FileService>();
+
         services.AddAutoMapper(typeof(CityAndCityDTO));
         services.AddAutoMapper(typeof(UserAndUserDTO));
         services.AddAutoMapper(typeof(RolesAndRolesDTO));
         services.AddAutoMapper(typeof(UserRoleAndUserRoleDTO));
         services.AddAutoMapper(typeof(ActionsAndActionDTO));
+        services.AddAutoMapper(typeof(FilesAndFilesDTO));
 
         services.AddRepositories();
     }

@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BL.DTO;
 
-namespace BL.Interfaces
+namespace BL.Interfaces;
+
+public interface ICityService : IService<CityDTO>
 {
-    public interface ICityService : IService<CityDTO>
-    {
-    }
 }

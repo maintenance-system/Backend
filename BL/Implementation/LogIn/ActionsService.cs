@@ -15,11 +15,13 @@ internal class ActionsService : IActionsService
 {
     IActionsRepository actionRepository;
     IMapper mapper;
+
     public ActionsService(IActionsRepository actionRepository, IMapper mapper)
     {
         this.actionRepository = actionRepository;
         this.mapper = mapper;
     }
+
     public async Task<int> CreateAsync(ActionDTO item)
     {
         Actions action = mapper.Map<Actions>(item);
